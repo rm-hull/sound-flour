@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/data.json "0.2.2"]
                  [instaparse "1.1.0"]
-                 [clj-http "0.7.2"]
+                 ;[clj-http "0.7.2"]
                  [clj-time "0.5.1"]
                  [compojure "1.1.5"]
                  [ring/ring-core "1.2.0-RC1"]
