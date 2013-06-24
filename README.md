@@ -67,7 +67,7 @@ In theory, we could generate something altogether a bit smoother maybe:
 (sine-wave 440 0.5) ; 440 Hz = Middle C 
 ```
 Which returns a function that driven with a sampling tick, returns a value in
-the range ±1.0 that when streamed out, would approximates middle C.
+the range ±1.0 that when streamed out, would approximate middle C.
 
 A sine wave on its own is pretty boring; it only _becomes_ interesting when it 
 can be composed with other functions, 
@@ -92,7 +92,7 @@ I see it working at three levels:
 
 * Framework + my gists = something possibly interesting
 
-* Framework + YOUR gists = something really interesting
+* Framework + YOUR gists = something _really_ interesting
 
 ## So why shouldn't I just use Overtone?
 
