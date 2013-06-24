@@ -6,9 +6,10 @@ Sound-flour is:
 * written in clojure & clojurescript,
 * uses HTML5's web audio API,
 * an experiment in collaborative broadcast streaming computer-generated music,
-* hosted in heroku: http://sound-flour.destructuring-bind.org 
-* nothing more than an idea in my head (at the moment) and is randomly documented in this readme
-* subject to change
+* hosted in heroku: http://sound-flour.destructuring-bind.org, 
+* nothing more than an idea in my head (at the moment),
+* is randomly documented in this readme,
+* subject to change,
 * a tragic pun on http://pouet.net/nfo.php?which=57115 ...
 * ... but will probably end up more like https://www.youtube.com/watch?v=3zoTKXXNQIU
 
@@ -68,10 +69,10 @@ In theory, we could generate something altogether a bit smoother maybe:
 Which returns a function that driven with a sampling tick, returns a value in
 the range ±1.0 that when streamed out, would approximates middle C.
 
-A sine wave on its own is pretty boring; it only becomes interesting when it 
-can be composed with other functions 
-(c.f. (Functional Composition by Chris Ford)[http://www.youtube.com/watch?v=Mfsnlbd-4xQ]),
-so perhaps we can build ontop of this, perhaps there should be multiple 
+A sine wave on its own is pretty boring; it only _becomes_ interesting when it 
+can be composed with other functions, 
+c.f. [Functional Composition by Chris Ford](http://www.youtube.com/watch?v=Mfsnlbd-4xQ),
+so perhaps we can build on top of this basic function, perhaps there should be multiple 
 channels that get mixed before being streamed, maybe there should be stereo output, ...
 
 ## What this project actually is
