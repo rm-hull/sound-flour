@@ -87,7 +87,7 @@
     false ; signed
     false)) ; little-endian
 
-(defn audio-stream [frame-rate bits-per-sample raw-data-stream]
+(defn audio-stream [raw-data-stream frame-rate bits-per-sample]
   ;(AudioInputStream.
     (SequenceInputStream.
       (ByteArrayInputStream. (header frame-rate bits-per-sample))
