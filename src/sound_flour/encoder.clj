@@ -21,12 +21,12 @@
 ;;
 ;; SPECIFICATION (RIFF/WAVE file containing PCM data):
 ;;   The canonical WAVE format starts with the RIFF header:
-;;     0        4 (char[4])     ChunkID             Contains the letters "RIFF" in ASCII form (0x52494646 big-endian form).
-;;     4        4 (uint)        ChunkSize           = 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size); = 36 + SubChunk2Size if SubChunk1Size=16
+;;     0    4 (char[4])     ChunkID             Contains the letters "RIFF" in ASCII form (0x52494646 big-endian form).
+;;     4    4 (uint)        ChunkSize           = 4 + (8 + SubChunk1Size) + (8 + SubChunk2Size); = 36 + SubChunk2Size if SubChunk1Size=16
 ;;                                                   This is the size of the rest of the chunk following this number.  This is the size of the
 ;;                                                   entire file in bytes minus 8 bytes for the two fields not included in this count:
 ;;                                                   ChunkID and ChunkSize.
-;;     8        4 (char[4])     Format              Contains the letters "WAVE" (0x57415645 big-endian form).
+;;     8    4 (char[4])     Format              Contains the letters "WAVE" (0x57415645 big-endian form).
 ;;
 ;;   The "WAVE" format consists of two subchunks: "fmt " and "data":
 ;;    The "fmt " subchunk describes the sound data's format:
