@@ -1,4 +1,4 @@
-# Sound-Flour [![Build Status](https://secure.travis-ci.org/rm-hull/sound-flour.png)](http://travis-ci.org/rm-hull/sound-flour) [![Coverage Status](https://coveralls.io/repos/rm-hull/sound-flour/badge.svg?branch=master)](https://coveralls.io/r/rm-hull/sound-flour?branch=master) [![Dependencies Status](https://jarkeeper.com/rm-hull/sound-flour/status.svg)](https://jarkeeper.com/rm-hull/sound-flour)
+# Sound-Flour [![Build Status](https://secure.travis-ci.org/rm-hull/sound-flour.svg)](http://travis-ci.org/rm-hull/sound-flour) [![Coverage Status](https://coveralls.io/repos/rm-hull/sound-flour/badge.svg?branch=master)](https://coveralls.io/r/rm-hull/sound-flour?branch=master) [![Dependencies Status](https://jarkeeper.com/rm-hull/sound-flour/status.svg)](https://jarkeeper.com/rm-hull/sound-flour)
 
 > **NOTE:** This project is undergoing significant rework
 
