@@ -18,6 +18,7 @@
   :plugins [
     [lein-ring "0.9.7"]
     [codox "0.9.4"]]
+  :aot [sound-flour.FunctionInputStream]
   :source-paths ["src"]
   :resource-paths ["resources"]
   :jar-exclusions [#"(?:^|/).git"]
