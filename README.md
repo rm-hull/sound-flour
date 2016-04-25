@@ -116,6 +116,7 @@ In no particular order, ideas borrowed heavily from:
 * http://greweb.me/2012/08/zound-a-playframework-2-audio-streaming-experiment-using-iteratees/
 * http://devslovebacon.com/conferences/bacon-2013/talks/defining-music-recreational-programming-and-pure-data
 * http://js1k.com/2013-spring/demo/1558
+* https://www.youtube.com/watch?v=4qsWFFuYZYI
 
 ## TODO
 

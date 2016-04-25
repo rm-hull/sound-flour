@@ -6,7 +6,7 @@
     [ring.logger.timbre :as logger.timbre]
     [metrics.ring.expose :refer [expose-metrics-as-json]]
     [metrics.ring.instrument :refer [instrument]]
-    [infix.macros :refer [infix]]
+    [infix.macros :refer [infix from-string]]
     [sound-flour.encoder :refer [audio-stream clip scale]]
     [sound-flour.oscillators :refer [sine-wave]])
   (:import
@@ -27,6 +27,10 @@
 (defn c [t]
   (infix  (t >> 6 | t | t >> (t >> 16)) * 10 + ((t >> 11) & 7)))
 
+(defn d [t]
+  (infix (t % (t / (t >> 9 | t >> 13))) ))
+
+
 (defn upscale-8-bit [v]
   (infix 0xff * (0xff & v)))
 
@@ -36,20 +40,46 @@
       (response (audio-stream 8000 16 (FunctionInputStream. sin)))
       (content-type "audio/x-wav")))
 
+  (GET "/8-bit-trip/:eqn" [eqn]
+   (->
+     (comp upscale-8-bit (from-string [t] eqn))
+     (FunctionInputStream.)
+     (audio-stream 8000 16)
+     (response)
+     (content-type "audio/x-wav")))
+
   (GET "/a" []
     (->
-      (response (audio-stream 8000 16 (FunctionInputStream. (comp upscale-8-bit a))))
+      (comp upscale-8-bit a)
+      (FunctionInputStream.)
+      (audio-stream 8000 16)
+      (response)
       (content-type "audio/x-wav")))
 
   (GET "/b" []
     (->
-      (response (audio-stream 8000 16 (FunctionInputStream. (comp upscale-8-bit b))))
+      (comp upscale-8-bit b)
+      (FunctionInputStream.)
+      (audio-stream 8000 16)
+      (response)
       (content-type "audio/x-wav")))
 
   (GET "/c" []
     (->
-      (response (audio-stream 8000 16 (FunctionInputStream. (comp upscale-8-bit c))))
+      (comp upscale-8-bit c)
+      (FunctionInputStream.)
+      (audio-stream 8000 16)
+      (response)
+      (content-type "audio/x-wav")))
+
+  (GET "/d" []
+    (->
+      (comp upscale-8-bit d)
+      (FunctionInputStream.)
+      (audio-stream 8000 16)
+      (response)
       (content-type "audio/x-wav"))))
+
 
 (def app
   (->
