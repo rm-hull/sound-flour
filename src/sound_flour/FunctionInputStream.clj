@@ -9,16 +9,25 @@
     :constructors {[clojure.lang.Fn] []}
     :main false))
 
+(def ^:private buffer-size 1024)
+
 (defn -init [func]
-  [[] (ref { :fn func :t 0 :buf nil})])
+  [[] (ref { :fn (comp short-little-endian func) :t 0 :buf nil})])
 
 (defn -read-void [this]
   (let [state (.state this)
         buf (:buf @state)]
     (dosync
-      (if (empty? buf)
-        (alter state assoc :buf (short-little-endian ((:fn @state) (:t @state))))
-        (alter state update :t inc))
-      (let [fst (first (:buf @state))]
-        (alter state update :buf next)
-        (byte->int fst)))))
+      (byte->int
+        (first
+          (if (empty? buf)
+            (let [func  (:fn @state)
+                  start (:t @state)
+                  end   (+ start buffer-size)
+                  buf   (mapcat func (range start end))]
+              (alter state assoc :buf (next buf) :t end)
+              buf)
+
+            (do
+              (alter state update :buf next)
+              buf)))))))
