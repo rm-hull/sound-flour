@@ -11,7 +11,7 @@
     [metrics-clojure-ring "2.6.1"]
     [ring-logger-timbre "0.7.5"]
     [com.taoensso/timbre "4.3.1"]
-    [rm-hull/infix "0.2.5"]]
+    [rm-hull/infix "0.2.6"]]
   :scm {:url "git@github.com:rm-hull/sound-flour.git"}
   :ring {
     :handler sound-flour.handler/app }
