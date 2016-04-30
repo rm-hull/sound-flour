@@ -3,7 +3,7 @@
     [sound-flour.byte-converters :refer :all])
   (:import
     [javax.sound.sampled AudioFormat AudioInputStream]
-    [java.io ByteArrayInputStream SequenceInputStream]))
+    [java.io BufferedInputStream ByteArrayInputStream SequenceInputStream]))
 
 ;; Based loosely on:
 ;;   - https://github.com/gre/zound/blob/master/playapp/app/encoders/MonoWaveEncoder.scala
@@ -70,30 +70,19 @@
                (int-little-endian 0x7fffffff))]
   (byte-array (concat riff fmt data))))
 
-(defn clip [^double d]
-  (Math/max -1.0 (Math/min d 1.0)))
-
-(defn scale [^double d]
-  (ushort (* 0x7fff d)))
-
-(defn encode-data [data]
-  (mapcat #(short-little-endian (scale (clip %))) data))
-
-(defn audio-format [num-channels bits-per-sample]
+(defn audio-format [frame-rate bits-per-sample]
   (AudioFormat.
-    1
+    frame-rate
     bits-per-sample
-    num-channels
-    false ; signed
-    false)) ; little-endian
+    1        ; num-channels = 1 (mono)
+    false    ; unsigned
+    false))  ; little-endian
 
 (defn audio-stream [raw-data-stream frame-rate bits-per-sample]
-  ;(AudioInputStream.
+  (AudioInputStream.
     (SequenceInputStream.
       (ByteArrayInputStream. (header frame-rate bits-per-sample))
-      raw-data-stream)
-  ;  (audio-format)
-  ;  Long/MAX_VALUE)
-
-  )
+      (BufferedInputStream. raw-data-stream))
+    (audio-format frame-rate bits-per-sample)
+    Long/MAX_VALUE))
 
