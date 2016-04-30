@@ -1,18 +1,24 @@
 (ns sound-flour.FunctionInputStream
   (:require
-    [sound-flour.byte-converters :refer [short-little-endian byte->int]])
+    [sound-flour.byte-converters :refer :all])
   (:gen-class
     :name sound-flour.FunctionInputStream
     :state state
     :extends java.io.InputStream
     :init init
-    :constructors {[clojure.lang.Fn] []}
+    :constructors {[clojure.lang.Fn java.lang.Number] []}
     :main false))
 
 (def ^:private buffer-size 1024)
 
-(defn -init [func]
-  [[] (ref { :fn (comp short-little-endian func) :t 0 :buf nil})])
+(def ^:private converter {
+  8 (comp list ubyte)
+  16 short-little-endian
+  32 int-little-endian
+  64 long-little-endian})
+
+(defn -init [func bits-per-sample]
+  [[] (ref { :fn (comp (converter bits-per-sample) func) :t 0 :buf nil})])
 
 (defn -read-void [this]
   (let [state (.state this)
