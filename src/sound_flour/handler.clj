@@ -8,7 +8,6 @@
     [metrics.ring.instrument :refer [instrument]]
     [infix.macros :refer [infix from-string]]
     [sound-flour.encoder :refer [audio-stream]]
-    [sound-flour.byte-converters :refer [ubyte ushort]]
     [sound-flour.oscillators :refer [sine-wave]])
   (:import
     [sound-flour FunctionInputStream]))
@@ -19,7 +18,7 @@
 (defroutes app-routes
   (GET "/sine-wave" []
     (->
-      (comp ushort (partial * 0x7fff) clip (sine-wave 440 0.5))  ; 440 Hz = Middle C
+      (comp unchecked-short (partial * 0x7fff) clip (sine-wave 440 0.5))  ; 440 Hz = Middle C
       (FunctionInputStream. 16)
       (audio-stream 8000 16)
       (response)
@@ -27,7 +26,7 @@
 
   (GET "/8-bit-trip/:expr" [expr]
    (->
-     (comp ubyte (partial bit-and 0xFF) (from-string [t] expr))
+     (comp unchecked-byte (from-string [t] expr))
      (FunctionInputStream. 8)
      (audio-stream 8000 8)
      (response)

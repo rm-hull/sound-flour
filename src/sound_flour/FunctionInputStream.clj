@@ -12,7 +12,7 @@
 (def ^:private buffer-size 1024)
 
 (def ^:private converter {
-  8 (comp list ubyte)
+  8 (comp list unchecked-byte)
   16 short-little-endian
   32 int-little-endian
   64 long-little-endian})
