@@ -6,18 +6,18 @@
     :url "http://opensource.org/licenses/MIT"}
   :dependencies [
     [org.clojure/clojure "1.8.0"]
-    [compojure "1.5.0"]
+    [compojure "1.5.1"]
     [ring "1.5.0"]
     [metrics-clojure-ring "2.7.0"]
     [ring-logger-timbre "0.7.5"]
-    [com.taoensso/timbre "4.4.0"]
-    [rm-hull/infix "0.2.8"]]
+    [com.taoensso/timbre "4.7.3"]
+    [rm-hull/infix "0.2.9"]]
   :scm {:url "git@github.com:rm-hull/sound-flour.git"}
   :ring {
     :handler sound-flour.handler/app }
   :plugins [
     [lein-ring "0.9.7"]
-    [lein-codox "0.9.5"]]
+    [lein-codox "0.9.6"]]
   :aot [sound-flour.FunctionInputStream]
   :source-paths ["src"]
   :resource-paths ["resources"]
