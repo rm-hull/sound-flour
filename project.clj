@@ -5,19 +5,15 @@
     :name "The MIT License (MIT)"
     :url "http://opensource.org/licenses/MIT"}
   :dependencies [
-    [org.clojure/clojure "1.8.0"]
-    [compojure "1.5.1"]
-    [ring "1.5.0"]
-    [metrics-clojure-ring "2.7.0"]
-    [ring-logger-timbre "0.7.5"]
-    [com.taoensso/timbre "4.7.3"]
-    [rm-hull/infix "0.2.9"]]
+    [compojure "1.6.0"]
+    [ring "1.6.3"]
+    [metrics-clojure-ring "2.10.0"]
+    [ring-logger-timbre "0.7.6"]
+    [com.taoensso/timbre "4.10.0"]
+    [rm-hull/infix "0.3.1"]]
   :scm {:url "git@github.com:rm-hull/sound-flour.git"}
   :ring {
     :handler sound-flour.handler/app }
-  :plugins [
-    [lein-ring "0.9.7"]
-    [lein-codox "0.9.6"]]
   :aot [sound-flour.FunctionInputStream]
   :source-paths ["src"]
   :resource-paths ["resources"]
@@ -27,10 +23,14 @@
     :source-paths ["src"]
     :output-path "doc/api"
     :source-uri "http://github.com/rm-hull/sound-flour/blob/master/{filepath}#L{line}" }
-  :min-lein-version "2.6.1"
+  :min-lein-version "2.8.1"
   :profiles {
     :uberjar {:aot :all}
     :dev {
       :global-vars {*warn-on-reflection* true}
-      :plugins [
-        [lein-cloverage "1.0.6"]]}})
+    :dependencies [
+      [org.clojure/clojure "1.9.0"]]
+    :plugins [
+      [lein-ring "0.12.2"]
+      [lein-codox "0.10.3"]
+      [lein-cloverage "1.0.10"]]}})
